@@ -21,8 +21,8 @@ public class AppTest {
         driver = new DriverService().getDriverChrome();
         driver.get("https://demo.guru99.com/test/newtours/register.php");
         driver.manage().window().maximize();
-        // inisialisasi WebDriverWait dengan durasi timeout 25 detik
-        wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+        // inisialisasi WebDriverWait dengan durasi timeout 10 detik
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @Test
@@ -40,8 +40,8 @@ public class AppTest {
         String countryInput = "INDONESIA";
 
         String emailInput = "adeo@test.com"; // username
-        String passwordInput = "12345";
-        String confirmPasswordInput = "12345";
+        String passwordInput = "123qwe";
+        String confirmPasswordInput = "123qwe";
 
         // isi form
         // manggil wait, beda dari sleep, wait lebih efisien (tanya gpt :V)
@@ -77,18 +77,31 @@ public class AppTest {
         // Validasi di halaman konfirmasi
         // Validasi pesan sapaan "Dear..."
         // ada wwaitnya karena butuh waktu untuk load halamannya
+        // kenapa pakai xpath? karena ini bukan di dalam tag tertentu, jadi pake xpath
+        // dan pake contains biar lebih fleksibel (nggak harus sama persis)
+        // penjelasan dalam () xpathnya
+        // //*: cari di seluruh dokumen
+        // [contains(text(),'Dear " + firstNameInput + "')
         String expectedGreetingText = "Dear " + firstNameInput + " " + lastNameInput + ",";
         WebElement greetingElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[contains(text(),'Dear " + firstNameInput + "')]")));
 
         // Validasi pesan "Note: Your user name is..."
         // ada wwaitnya karena butuh waktu untuk load halamannya
+        // penjelasan dalam () xpathnya
+        // //*: cari di seluruh dokumen
+        // [contains(text(),'Note: Your user name is " + emailInput + ".')]
+        // : cari element yang mengandung teks 'Note: Your user name is [email].'
         String expectedNoteText = "Note: Your user name is " + emailInput + ".";
         WebElement noteElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[contains(text(),'Note: Your user name is')]")));
 
-        Assert.assertTrue(greetingElement.getText().contains(expectedGreetingText));
-        Assert.assertTrue(noteElement.getText().contains(expectedNoteText));
+        // penjelasan contains
+        // contains itu ngecek apakah sebuah string mengandung substring tertentu
+        // atau tidak. Misalnya, contains("Hello, world!", "world") akan mengembalikan
+        // true karena "Hello, world!" mengandung "world".
+        Assert.assertEquals(greetingElement.getText(), expectedGreetingText);
+        Assert.assertEquals(noteElement.getText(), expectedNoteText);
     }
 
     @AfterMethod

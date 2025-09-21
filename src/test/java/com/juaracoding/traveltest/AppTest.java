@@ -45,6 +45,7 @@ public class AppTest {
 
         // isi form
         // manggil wait, beda dari sleep, wait lebih efisien (tanya gpt :V)
+        // tunggu sampe elementnya muncul, baru diisi
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("firstName"))).sendKeys(firstNameInput);
         driver.findElement(By.name("lastName")).sendKeys(lastNameInput);
         driver.findElement(By.name("phone")).sendKeys(phoneInput);
@@ -75,11 +76,13 @@ public class AppTest {
 
         // Validasi di halaman konfirmasi
         // Validasi pesan sapaan "Dear..."
+        // ada wwaitnya karena butuh waktu untuk load halamannya
         String expectedGreetingText = "Dear " + firstNameInput + " " + lastNameInput + ",";
         WebElement greetingElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[contains(text(),'Dear " + firstNameInput + "')]")));
 
         // Validasi pesan "Note: Your user name is..."
+        // ada wwaitnya karena butuh waktu untuk load halamannya
         String expectedNoteText = "Note: Your user name is " + emailInput + ".";
         WebElement noteElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[contains(text(),'Note: Your user name is')]")));

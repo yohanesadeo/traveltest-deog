@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Travel Form Test">
+  <test name="Contact Information Form Test" enabled="true">
+    <classes>
+      <!-- <class name="com.juaracoding.ecommerce.authentications.SignInNegativeTest"></class> -->
+      <class name="com.juaracoding.traveltest.formtest.ContactInformationFormTest"></class>
+    </classes>
+  </test>
+  
+  <!-- <test name="Common Test" enabled="true">
+    <classes>
+      <class name="com.juaracoding.ecommerce.commons.RadioCheckboxTest"></class>
+      <class name="com.juaracoding.ecommerce.commons.DropdownTest"></class>
+    </classes>
+  </test> -->
+</suite>

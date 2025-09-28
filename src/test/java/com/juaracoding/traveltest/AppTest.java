@@ -71,6 +71,7 @@ public class AppTest {
         // penjelasan dalam () xpathnya
         // //*: cari di seluruh dokumen
         // [contains(text(),'Dear " + firstNameInput + "')
+        // : cari element yang mengandung teks 'Dear [firstName].'
         String expectedGreetingText = "Dear " + firstNameInput + " " + lastNameInput + ",";
         WebElement greetingElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//*[contains(text(),'Dear " + firstNameInput + "')]")));

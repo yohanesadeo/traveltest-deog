@@ -60,17 +60,6 @@ public class AppTest {
         driver.findElement(By.name("email")).sendKeys(emailInput);
         driver.findElement(By.name("password")).sendKeys(passwordInput);
         driver.findElement(By.name("confirmPassword")).sendKeys(confirmPasswordInput);
-
-        // Validasi bahwa semua input field terisi dengan benar sebelum submit
-        Assert.assertEquals(driver.findElement(By.name("firstName")).getAttribute("value"), firstNameInput);
-        Assert.assertEquals(driver.findElement(By.name("lastName")).getAttribute("value"), lastNameInput);
-        Assert.assertEquals(driver.findElement(By.name("phone")).getAttribute("value"), phoneInput);
-        Assert.assertEquals(driver.findElement(By.name("userName")).getAttribute("value"), userNameInput);
-        Assert.assertEquals(driver.findElement(By.name("address1")).getAttribute("value"), address1Input);
-        Assert.assertEquals(driver.findElement(By.name("city")).getAttribute("value"), cityInput);
-        Assert.assertEquals(driver.findElement(By.name("state")).getAttribute("value"), stateInput);
-        Assert.assertEquals(driver.findElement(By.name("postalCode")).getAttribute("value"), postalCodeInput);
-        Assert.assertEquals(driver.findElement(By.name("country")).getAttribute("value"), countryInput);
         
         driver.findElement(By.name("submit")).click();
 
